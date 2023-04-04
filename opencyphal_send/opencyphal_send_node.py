@@ -63,7 +63,9 @@ class OpenCyphalSend(Node):
         try:
             self.bus.send(SocketCANMessage)
         except can.CanError:
-            print("Message NOT sent")
+            print('Message {:s} : {:08x} [{:x}] {:s} NOT sent'.format(
+                self.CANChannel, ArbitrationID, 64,
+                ''.join(map("{:02x} ".format, SocketCANData.tolist())).upper()))
 
 def main(args=None):
     rclpy.init()
